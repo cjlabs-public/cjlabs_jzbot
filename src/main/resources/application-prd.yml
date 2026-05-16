@@ -1,0 +1,97 @@
+# ==================== 日志配置 ====================
+logging:
+  config: classpath:logback-spring.xml  # 日志配置文件位置
+  level:
+    root: WARN  # 根日志级别设置为 WARN（只显示警告和错误信息）
+    com.cjlabs.tgwatcher: INFO  # 应用日志级别设置为 INFO（显示信息级别及以上）
+    org.rocksdb: ERROR  # RocksDB 库日志级别设置为 ERROR（只显示错误信息）
+
+fmk:
+  datasource:
+    # 是否启用多数据源（默认：false）
+    enabled: true
+    # 默认数据源名称（默认：master）
+    master: master
+    # 启动时验证所有数据源连接（默认：true）
+    validate-on-startup: true
+    # 严格模式：切换到不存在的数据源时抛异常（默认：false，使用master）
+    strict-mode: false
+    datasources:
+      # 主数据源（读写）
+      master:
+        jdbc-url: >
+          jdbc:mysql://127.0.0.1:3306/remote_db
+          ?useSSL=false
+          &useUnicode=true
+          &characterEncoding=UTF-8
+          &serverTimezone=UTC
+          &allowPublicKeyRetrieval=true
+          &socketTimeout=8000
+          &connectTimeout=5000
+          &rewriteBatchedStatements=true
+          &cachePrepStmts=true
+          &prepStmtCacheSize=256
+          &prepStmtCacheSqlLimit=2048
+          &autoReconnect=true
+          &failOverReadOnly=false
+        username: "root"
+        password: "123456"
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        # 最大连接池大小
+        maximum-pool-size: 200
+        # 最小空闲连接数
+        minimum-idle: 100
+        # 连接超时时间（毫秒）
+        connection-timeout: 3000
+        # 空闲超时时间（毫秒）10分钟
+        idle-timeout: 600000
+        # 连接最大生命周期（毫秒）30分钟
+        max-lifetime: 28740000
+        # 连接池名称
+        pool-name: master-Pool
+        # 是否自动提交
+        auto-commit: true
+        # 连接测试查询
+        connection-test-query: SELECT 1
+        # 连接泄漏检测阈值（毫秒）
+        leak-detection-threshold: 30000
+        # 验证超时时间（毫秒）
+        validation-timeout: 5000
+
+
+  # ==================== FMK Token 配置 ====================
+  token:
+    # 是否启用 Token 模块
+    enabled: true
+
+    # Token 存储方式：memory（内存）/ redis（Redis）
+    type: memory
+
+    # Token 过期配置 Token 过期时间（小时）
+    expire-hours: 12
+
+    redis:
+      keyPrefix: "fmk:token:"
+      expireHours: 12
+
+    memory:
+      maxSize: 10000
+      expireHours: 12
+
+mybatis-plus:
+  #  mapper-locations: classpath*:mapper/**/*.xml
+  #  type-aliases-package: com.cjlabs.service.sysuserinfo.mysql
+  #  type-handlers-package: com.cjlabs.db.typehandler   # 上述自定义毫秒/Instant handler 可放这里
+  global-config:
+    db-config:
+      id-type: AUTO
+  #      logic-delete-field: delFlag
+  #      logic-delete-value: ABNORMAL
+  #      logic-not-delete-value: NORMAL
+  configuration:
+    map-underscore-to-camel-case: true
+    #    jdbc-type-for-null: 'NULL'
+    default-executor-type: reuse
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+
