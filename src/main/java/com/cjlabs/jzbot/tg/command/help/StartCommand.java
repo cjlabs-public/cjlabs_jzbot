@@ -1,10 +1,10 @@
 package com.cjlabs.jzbot.tg.command.help;
 
 
-import com.cjlabs.localbaby.tg.callback.GetUserIdCallbackHandler;
-import com.cjlabs.localbaby.tg.command.AbstractBotCommand;
-import com.cjlabs.localbaby.tg.enums.ChatTypeEnum;
-import com.cjlabs.localbaby.tg.util.ButtonBuilder;
+import com.cjlabs.jzbot.tg.callback.callback.GetUserIdCallbackHandler;
+import com.cjlabs.jzbot.tg.command.AbstractBotCommand;
+import com.cjlabs.jzbot.tg.common.enums.ChatTypeEnum;
+import com.cjlabs.jzbot.tg.util.ButtonBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;

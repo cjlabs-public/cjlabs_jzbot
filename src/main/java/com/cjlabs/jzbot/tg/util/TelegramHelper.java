@@ -1,7 +1,7 @@
 package com.cjlabs.jzbot.tg.util;
 
 import com.cjlabs.domain.enums.IEnumStr;
-import com.cjlabs.localbaby.tg.enums.ChatTypeEnum;
+import com.cjlabs.jzbot.tg.common.enums.ChatTypeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
@@ -236,6 +236,24 @@ public class TelegramHelper {
         }
 
         return text;
+    }
+
+    /**
+     * 提取命令名称（去除 @botname 和参数）。
+     * 例如: "/start@mybot arg" -> "/start"
+     */
+    public static String extractCommand(Message message) {
+        String commandText = getCommandText(message);
+        if (!commandText.startsWith("/")) {
+            return "";
+        }
+
+        int atIndex = commandText.indexOf('@');
+        if (atIndex > 0) {
+            commandText = commandText.substring(0, atIndex);
+        }
+
+        return commandText.toLowerCase();
     }
 
     /**

@@ -2,15 +2,10 @@ package com.cjlabs.jzbot.tg.command;
 
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 机器人命令接口
  */
 public interface BotCommand {
-
-    Map<String, BotCommand> COMMAND_MAP = new HashMap<>();
 
     /**
      * 获取命令名称（如 /start）
@@ -53,13 +48,5 @@ public interface BotCommand {
      */
     default String getUsage() {
         return getCommand() + " - " + getDescription();
-    }
-
-    default void register() {
-        COMMAND_MAP.put(getCommand(), this);
-    }
-
-    static Map<String, BotCommand> getCommandMap() {
-        return COMMAND_MAP;
     }
 }

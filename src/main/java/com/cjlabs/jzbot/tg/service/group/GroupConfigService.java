@@ -1,6 +1,6 @@
 package com.cjlabs.jzbot.tg.service.group;
 
-import com.cjlabs.localbaby.tg.domain.bo.group.GroupConfig;
+import com.cjlabs.jzbot.tg.domain.bo.group.GroupConfig;
 import org.springframework.stereotype.Service;
 
 // 群组配置服务

@@ -1,12 +1,12 @@
-package com.cjlabs.jzbot.tg.enums;
+package com.cjlabs.jzbot.tg.common.enums;
 
 import com.cjlabs.domain.enums.IEnumStr;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public enum BotTypeEnum implements IEnumStr {
 
     /**
@@ -34,6 +34,9 @@ public enum BotTypeEnum implements IEnumStr {
      */
     UTILITY("UTILITY", "工具机器人"),
 
+    /**
+     * 信息查询机器人
+     */
     INFO_QUERY("INFO_QUERY", "信息查询机器人"),
 
     ;

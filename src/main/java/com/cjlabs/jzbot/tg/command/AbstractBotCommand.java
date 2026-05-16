@@ -2,10 +2,9 @@ package com.cjlabs.jzbot.tg.command;
 
 import com.cjlabs.domain.enums.IEnumStr;
 
-import com.cjlabs.localbaby.tg.core.BotManager;
-import com.cjlabs.localbaby.tg.enums.ChatTypeEnum;
-import com.cjlabs.localbaby.tg.service.message.TelegramMessageService;
-import com.cjlabs.localbaby.tg.util.TelegramHelper;
+import com.cjlabs.jzbot.tg.common.enums.ChatTypeEnum;
+import com.cjlabs.jzbot.tg.service.message.TelegramMessageService;
+import com.cjlabs.jzbot.tg.util.TelegramHelper;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +21,6 @@ import java.util.Optional;
 public abstract class AbstractBotCommand implements BotCommand {
     @Autowired
     protected TelegramMessageService messageService;
-    @Autowired
-    protected BotManager botManager;
 
     /**
      * -- SETTER --

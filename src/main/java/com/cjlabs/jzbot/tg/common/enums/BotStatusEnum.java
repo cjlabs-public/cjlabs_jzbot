@@ -1,15 +1,15 @@
-package com.cjlabs.jzbot.tg.enums;
+package com.cjlabs.jzbot.tg.common.enums;
 
 import com.cjlabs.domain.enums.IEnumStr;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Bot 运行状态枚举
  */
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public enum BotStatusEnum implements IEnumStr {
 
     /**

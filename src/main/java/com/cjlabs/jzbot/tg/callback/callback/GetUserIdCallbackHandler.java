@@ -1,6 +1,7 @@
-package com.cjlabs.jzbot.tg.callback;
+package com.cjlabs.jzbot.tg.callback.callback;
 
-import com.cjlabs.localbaby.tg.service.message.TelegramMessageService;
+import com.cjlabs.jzbot.tg.callback.AbstractCallbackHandler;
+import com.cjlabs.jzbot.tg.service.message.TelegramMessageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

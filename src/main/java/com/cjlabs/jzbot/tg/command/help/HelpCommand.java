@@ -1,8 +1,10 @@
 package com.cjlabs.jzbot.tg.command.help;
 
-import com.cjlabs.localbaby.tg.command.AbstractBotCommand;
-import com.cjlabs.localbaby.tg.command.BotCommand;
+import com.cjlabs.jzbot.tg.command.AbstractBotCommand;
+import com.cjlabs.jzbot.tg.command.BotCommandRegistry;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -11,7 +13,10 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  */
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class HelpCommand extends AbstractBotCommand {
+
+    private final ObjectProvider<BotCommandRegistry> commandRegistryProvider;
     
     @Override
     public String getCommand() {
@@ -30,8 +35,7 @@ public class HelpCommand extends AbstractBotCommand {
         StringBuilder helpMessage = new StringBuilder();
         helpMessage.append("📚 可用命令列表\n\n");
 
-        BotCommand.getCommandMap().values()
-                // .sorted(Comparator.comparing(BotCommand::getCommand))
+        commandRegistryProvider.getObject().list()
                 .forEach(cmd ->
                         helpMessage.append(String.format("  %s - %s\n", cmd.getCommand(), cmd.getDescription()))
                 );

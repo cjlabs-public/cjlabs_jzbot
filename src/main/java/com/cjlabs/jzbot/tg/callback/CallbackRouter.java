@@ -6,9 +6,11 @@ import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.generics.TelegramClient;
 
-import java.util.HashMap;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * 回调路由器
@@ -19,18 +21,26 @@ import java.util.Map;
 @Component
 public class CallbackRouter {
     
-    private final Map<String, CallbackHandler> handlers = new HashMap<>();
+    private final Map<String, CallbackHandler> handlers;
     
     /**
      * 构造函数 - 自动注入所有 CallbackHandler 实现
      */
     public CallbackRouter(List<CallbackHandler> handlerList) {
-        for (CallbackHandler handler : handlerList) {
-            handlers.put(handler.getCallbackPrefix(), handler);
-            log.info("Registered callback handler: {} (prefix: {})", 
-                    handler.getClass().getSimpleName(), 
-                    handler.getCallbackPrefix());
-        }
+        this.handlers = handlerList.stream()
+                .sorted(Comparator.comparingInt((CallbackHandler handler) -> handler.getCallbackPrefix().length()).reversed())
+                .collect(Collectors.toMap(
+                        CallbackHandler::getCallbackPrefix,
+                        handler -> handler,
+                        (left, right) -> {
+                            throw new IllegalStateException("Duplicate callback prefix: " + left.getCallbackPrefix());
+                        },
+                        LinkedHashMap::new
+                ));
+        handlers.forEach((prefix, handler) ->
+                log.info("Registered callback handler: {} (prefix: {})",
+                        handler.getClass().getSimpleName(),
+                        prefix));
         log.info("Total {} callback handlers registered", handlers.size());
     }
     
@@ -146,6 +156,6 @@ public class CallbackRouter {
      * 获取所有已注册的处理器前缀
      */
     public Map<String, CallbackHandler> getHandlers() {
-        return new HashMap<>(handlers);
+        return Map.copyOf(handlers);
     }
 }

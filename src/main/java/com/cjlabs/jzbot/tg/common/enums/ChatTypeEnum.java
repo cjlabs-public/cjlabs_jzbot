@@ -1,15 +1,18 @@
-package com.cjlabs.jzbot.tg.enums;
+package com.cjlabs.jzbot.tg.common.enums;
 
 import com.cjlabs.domain.enums.IEnumStr;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+import java.util.EnumSet;
+import java.util.Set;
 
 /**
  * Telegram 聊天类型枚举
  * 对应 Telegram API 中的 chat_type 字段
  */
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public enum ChatTypeEnum implements IEnumStr {
 
     PRIVATE("private", "私聊"),
@@ -18,6 +21,8 @@ public enum ChatTypeEnum implements IEnumStr {
     CHANNEL("channel", "频道"),
 
     ;
+
+    private static final Set<ChatTypeEnum> GROUP_TYPES = EnumSet.of(GROUP, SUPERGROUP);
 
     /**
      * Telegram API 中的类型值
@@ -33,7 +38,7 @@ public enum ChatTypeEnum implements IEnumStr {
      * 检查是否为群组类型（包括普通群组和超级群组）
      */
     public boolean isGroup() {
-        return this == GROUP || this == SUPERGROUP;
+        return GROUP_TYPES.contains(this);
     }
 
     /**

@@ -1,11 +1,12 @@
-package com.cjlabs.jzbot.tg.enums;
+package com.cjlabs.jzbot.tg.common.enums;
 
-import lombok.AllArgsConstructor;
+import com.cjlabs.domain.enums.IEnumStr;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
-@AllArgsConstructor
-public enum MessageTypeEnum {
+@RequiredArgsConstructor
+public enum MessageTypeEnum implements IEnumStr {
     TEXT("TEXT", "文本消息"),
     PHOTO("PHOTO", "图片消息"),
     VIDEO("VIDEO", "视频消息"),
@@ -17,5 +18,9 @@ public enum MessageTypeEnum {
     CONTACT("CONTACT", "联系人消息");
 
     private final String code;
-    private final String description;
+    private final String msg;
+
+    public String getDescription() {
+        return msg;
+    }
 }

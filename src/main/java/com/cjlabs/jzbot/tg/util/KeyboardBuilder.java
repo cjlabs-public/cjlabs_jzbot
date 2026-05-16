@@ -1,6 +1,6 @@
 package com.cjlabs.jzbot.tg.util;
 
-import com.cjlabs.localbaby.tg.domain.bo.group.GroupConfig;
+import com.cjlabs.jzbot.tg.domain.bo.group.GroupConfig;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
