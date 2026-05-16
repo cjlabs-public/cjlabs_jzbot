@@ -14,7 +14,7 @@ cjlabs_记账机器人是一个 Telegram 机器人，用于在 Telegram 私聊�
 ## 如何使用
 
 1. 打开 Telegram，搜索并使用 `@cjlabs_jzbot`。
-2. 或直接打开机器人链接：<https://t.me/cjlabs_jz_bot>
+2. 或直接打开机器人链接：<https://t.me/cjlabs_jzbot>
 3. 在私聊中发送 `/start` 开始使用。
 4. 发送 `/help` 查看当前支持的命令。
 5. 如需在群组中使用，请将机器人添加到目标群组，然后在群内发送 `/start` 或 `/help`。
@@ -32,4 +32,4 @@ cjlabs_记账机器人是一个 Telegram 机器人，用于在 Telegram 私聊�
 
 机器人账号：`@cjlabs_jzbot`
 
-机器人链接：<https://t.me/cjlabs_jz_bot>
+机器人链接：<https://t.me/cjlabs_jzbot>
